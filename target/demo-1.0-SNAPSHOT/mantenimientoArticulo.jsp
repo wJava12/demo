@@ -45,7 +45,7 @@ ArticuloService ser = new ArticuloServiceImpl();
  
  <div class="table-responsive col-md-12">
      <hr/>
-     <table class="table table-striped table " id="datos">
+     <table class="table table-striped table-de " id="datos">
             <thead class="thead-dark">
                 <tr>
                     <th>Codigo</th>

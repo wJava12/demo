@@ -11,7 +11,9 @@ import com.java.Model.dao.impl.DaoFactory;
 import com.java.Model.entidades.Tecnico;
 import com.java.service.TecnicoService;
 
+import javax.swing.text.html.Option;
 import java.util.List;
+import java.util.Optional;
 
 
 /**
@@ -63,6 +65,12 @@ public class TecnicoServiceImpl implements TecnicoService {
     @Override
     public int mostrarIdTecnico() {
         return dao.idTecnico();
+    }
+
+    @Override
+    public Tecnico buscarPorDni(String dni) {
+        Tecnico tecnico=dao.findDni(dni);
+        return (tecnico!=null)?tecnico:new Tecnico();
     }
 
 

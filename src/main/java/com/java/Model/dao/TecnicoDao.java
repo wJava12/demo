@@ -6,6 +6,7 @@
 package com.java.Model.dao;
 
 
+import com.java.Model.entidades.Cliente;
 import com.java.Model.entidades.Tecnico;
 
 /**
@@ -16,4 +17,5 @@ public interface TecnicoDao extends EntidadDao<Tecnico, Integer> {
     public boolean updateState(Integer id,int estado);
     boolean stateHorario(Integer id,int estado);
     int idTecnico();
+    Tecnico findDni(String dni);
 }

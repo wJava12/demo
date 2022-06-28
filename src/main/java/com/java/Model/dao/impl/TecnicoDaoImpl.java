@@ -5,10 +5,7 @@
  */
 package com.java.Model.dao.impl;
 
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -249,6 +246,55 @@ public class TecnicoDaoImpl implements TecnicoDao {
                 System.out.println(ex1);
             }        }
         return id;
+    }
+
+    @Override
+    public Tecnico findDni(String dni) {
+        Tecnico tecnico = null;
+        CargoService cargo= new CargoServiceImpl();
+
+        try{
+            con = DBConn.getConnection();
+            cst = con.prepareCall("{CALL sp_find_dniTecnico(?)}");
+            cst.setString(1,dni);
+            rs = cst.executeQuery();
+            if(rs.next()){
+                tecnico=new Tecnico();
+                tecnico.setIdTecnico(rs.getInt(1));
+                tecnico.setNombre(rs.getString(2));
+                tecnico.setApellido(rs.getString(3));
+                tecnico.setDni(rs.getString(4));
+                tecnico.setTelefono(rs.getString(5));
+                tecnico.setCorreo(rs.getString(6));
+
+                tecnico.setExperiencia(rs.getString(7));
+                tecnico.setEstado(rs.getInt(8));
+                tecnico.setEstadoEliminado(rs.getInt(9));
+                tecnico.setUsuario(rs.getString(10));
+                tecnico.setClave(rs.getString(11));
+                tecnico.setCargo(cargo.buscar(rs.getInt(12)));
+            }
+            rs.close();
+            cst.close();
+            con.close();
+            System.out.println("Busco correctamente");
+        }
+        catch (SQLIntegrityConstraintViolationException e){
+            System.out.println("Dni duplicado: "+e);
+            return null;
+
+        }
+
+        catch(SQLException ex){
+            try {
+                rs.close();
+                cst.close();
+                con.close();
+            } catch (SQLException ex1) {
+                System.out.println(ex1);
+            }
+        }
+        return tecnico;
     }
 
 }

@@ -1,5 +1,6 @@
 package com.java.Controller;
 
+import com.google.gson.Gson;
 import com.java.Model.entidades.*;
 import com.java.service.*;
 import com.java.service.impl.*;
@@ -24,8 +25,18 @@ public class ServletTecnico extends HttpServlet {
             TecnicoService objTecnicoService= new TecnicoServiceImpl();
         EspecialidadService objEspecialidadService= new EspecialidadServiceImpl();
         EspecialidadTecnicoService objEspecialidadTecnico= new EspecialidadTecnicoServiceImpl();
+        Gson gson= new Gson();
              Integer strCodigo;
-            try {
+            try {if(strTipo.equals("buscar_tecnico")){
+                String dni = request.getParameter("idcod");
+                System.out.println("codigo: "+dni);
+                Tecnico tecnico=objTecnicoService.buscarPorDni(dni);
+                String json=gson.toJson(tecnico);
+                //Type listType= new TypeToken<Cliente>(){}.getType();
+                response.getWriter().println(json);
+            }else
+
+
                 if(strTipo.equals("registrar_tecnico")){
 
                     //Captura los parametros que llegan de la Web.
@@ -55,6 +66,7 @@ public class ServletTecnico extends HttpServlet {
                         System.out.println(espe);
                         EspecialidadTecnico obj= new EspecialidadTecnico( tecnico,objE);
                         objEspecialidadTecnico.insertar(obj);
+                        response.sendRedirect("TecnicoMsg.jsp");
                     }
 
                 }else if (strTipo.equals("actualizar_tecnico")){
@@ -80,14 +92,15 @@ public class ServletTecnico extends HttpServlet {
                     System.out.println(tecnico);
                     tecnico.setIdTecnico(cod);
                     objTecnicoService.actualizar(tecnico);
+                    response.sendRedirect("TecnicoMsg.jsp");
 
                 }else if(strTipo.equals("eliminar_tecnico")){
                     int cod = Integer.parseInt(request.getParameter("txtId"));
                     System.out.println("codigo: "+cod);
                     objTecnicoService.cambiarEstado(cod,0);
+                    response.sendRedirect("TecnicoMsg.jsp");
                 }
 
-                response.sendRedirect("TecnicoMsg.jsp");
 
             }catch(Exception e){
                 response.sendRedirect("TecnicoError.jsp");

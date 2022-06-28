@@ -4,54 +4,53 @@
  * and open the template in the editor.
  */
 
-$(document).ready(function() {
-    $("#basic-form").validate({
-        rules: {
-            txtNombre : {
-                required: true,
-                minlength: 3
-            },
-            txtApellido : {
-                required: true,
-                minlength: 3
-            },
-            txtTelefono: {
-                required: true,
-                number: true,
-                min: 9
-            },
-            txtDni: {
-                required: true,
-                number: true,
-                min: 8
-            },
-            email: {
-                required: true,
-                email: true
-            },
+let myBtn=document.getElementById("myBtn");
+let clientDni=document.getElementById("inputDni");
+let nom;
 
-        },
-        messages : {
-            txtNombre: {
-                minlength: "Ingrese mas de 3 caracteres"
-            },
-            txtNombre: {
-                minlength: "Ingrese mas de 3 caracteres"
-            },
-            txtTelefono: {
-                required: "Por favor, Ingrese Celular",
-                number: "Por favor, Ingrese un valor numerico",
-                min: "Ingrese un valor igual a 9 digitos"
-            },
-            txtDni: {
-                required: "Por favor, Ingrese Dni",
-                number: "Por favor, Ingrese un valor numerico",
-                min: "Ingrese un valor igual a 8 digitos"
-            },
-            email: {
-                email: "El email deberia ser: abc@domain.tld"
-            }
-        }
-    });
-});
+
+//clientDni.addEventListener('input',updateValue);
+//myBtn.addEventListener("click",updateValue);
+function  updateValue(){
+
+        let url="tecnicoMan?tipo=buscar_tecnico&idcod="+clientDni.value;
+        const data={
+                method:'GET'
+        };
+        fetch(url,data)
+            .then(function (response){
+                    return response.json();
+            })
+
+            .then(function (client){
+                //if(confirm("Esta seguro que se desea registrar sus datos")){
+                    if(client.dni===clientDni.value){
+                        //vent.preventDefault();
+
+                        alert("Dni ya existe");
+                        console.log("error dni");
+                        document.getElementById('inputDni').style.backgroundColor = "#FFA4A4";
+                        clientDni.setCustomValidity(`Dni duplicado`);
+                        return 0;
+                        //clientDni.setCustomValidity(`Dni duplicado`);
+                        //window.history.back();
+
+
+                    }else {
+                        document.getElementById('inputDni').style.backgroundColor = "#d8ebf3";
+                        //console.log(band);
+                        //e.preventDefault();
+
+                        //clientDni.setCustomValidity(`Dni duplicado`);
+                        //window.history.back();
+                        document.getElementById('enviar').submit();
+                    }
+                //}
+            });
+
+}
+
+
+
+
 

@@ -16,4 +16,5 @@ public interface TecnicoService extends EntidadService<Tecnico, Integer> {
    boolean cambiarEstado(Integer id,int estado);
     boolean cambiarEstadoTecnico(Integer id,int estado);
     int mostrarIdTecnico();
+    Tecnico buscarPorDni(String dni);
 }
