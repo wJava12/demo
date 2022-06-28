@@ -1,4 +1,4 @@
-/* 
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -6,32 +6,36 @@
 
 let myBtn=document.getElementById("myBtn");
 let clientDni=document.getElementById("inputDni");
+let fecha=document.getElementById("inputFecha");
+
 let nom;
 
 
-//clientDni.addEventListener('input',updateValue);
+clientDni.addEventListener('input',updateValue);
 //myBtn.addEventListener("click",updateValue);
+
+
 function  updateValue(){
 
         let url="tecnicoMan?tipo=buscar_tecnico&idcod="+clientDni.value;
         const data={
-                method:'GET'
+            method:'GET'
         };
         fetch(url,data)
             .then(function (response){
-                    return response.json();
+                return response.json();
             })
 
             .then(function (client){
                 //if(confirm("Esta seguro que se desea registrar sus datos")){
-                    if(client.dni===clientDni.value){
+                    if(client.dni===clientDni.value ){
                         //vent.preventDefault();
-
+                        console.log(client);
                         alert("Dni ya existe");
-                        console.log("error dni");
+
                         document.getElementById('inputDni').style.backgroundColor = "#FFA4A4";
                         clientDni.setCustomValidity(`Dni duplicado`);
-                        return 0;
+                        //return 0;
                         //clientDni.setCustomValidity(`Dni duplicado`);
                         //window.history.back();
 
@@ -43,14 +47,14 @@ function  updateValue(){
 
                         //clientDni.setCustomValidity(`Dni duplicado`);
                         //window.history.back();
-                        document.getElementById('enviar').submit();
+                        //$('#enviar').valid();
+                        //document.getElementById('enviar').submit();
+                        //return 1;
                     }
                 //}
             });
 
 }
-
-
 
 
 

@@ -1,4 +1,4 @@
-<%@ page import="com.java.service.TecnicoService" %>
+    <%@ page import="com.java.service.TecnicoService" %>
 <%@ page import="com.java.service.impl.TecnicoServiceImpl" %>
 <%@ page import="com.java.Model.entidades.Tecnico" %>
 <%@ page import="java.util.List" %><%--

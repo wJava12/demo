@@ -38,7 +38,7 @@
         </div>
 
     </div>
-    <form action="horarioTecnicoMan" class="user" method="post">
+    <form action="horarioTecnicoMan" class="user" method="post" id="enviar">
         <div class="form-group row justify-content-end">
             <div class="col-sm-2">
                 <a class="btn btn-danger form-control" id="myBtn" >Calcular Horas de Laborales</a>
@@ -46,9 +46,9 @@
         </div>
 
         <div class="form-group row ">
-                <label for="inputFecha" class="col-sm-2 col-form-label">Fecha Inicio Mes</label>
+                <label for="inputFecha"  class="col-sm-2 col-form-label">Fecha Inicio Mes</label>
                 <div class="col-sm-2">
-                    <input type="date" class="form-control" id="inputFecha" name="txtFecha" placeholder="" required>
+                    <input type="date"  class="form-control" id="inputFecha" name="txtFecha" placeholder="" required>
                 </div>
             <label class="col-sm-2 col-form-label">De: </label>
             <div class="col-sm-2">
@@ -75,6 +75,9 @@
               </div>
         </div>
 
+
+
+
         <div class="form-group row ">
                 <label for="inputEntrada" class="col-sm-2 col-form-label">Hora Entrada</label>
                 <div class="col-sm-2">
@@ -98,11 +101,17 @@
 
         <div class="table-responsive col-md-12">
             <hr>
-            <div class="form-group row justify-content-end">
-                <div class="col-sm-2">
+
+            <div class="form-group row justify-content-between">
+                <div class="col-sm-4 mb-0 d-flex align-items-end">
+                        <a href="#datos" id="marcarTodo">Seleccionar Todos</a> |
+                        <a href="#datos" id="desmarcarTodo">Desmarcar</a>
+                </div>
+                <div class="col-sm-3">
                 <input class="form-control mr-sm-2" id="searchTerm" onkeyup="doSearch()" type="text"
                        placeholder="Buscar"/>
                 </div>
+
             </div>
 
             <table class="table table-striped table " id="datos">
@@ -141,7 +150,7 @@
                     </td>
 
                     <td>
-                        <div class="form-check d-flex justify-content-center">
+                        <div class="form-check d-flex justify-content-center" id="x">
                             <input class="form-check-input text-center" type="checkbox" name="tecnicos"
                                    value="<%=aux.getIdTecnico()%>" id="flexCheckDefault">
                         </div>
@@ -175,14 +184,22 @@
             <div class="d-flex justify-content-center">
                 <button  type="submit" class="btn btn-success m-3">Agregar</button>
             </div>
-
-
-
+        s
         <input type="hidden" id="tipo" name="tipo" value="registrar_horarioTecnico">
 
 
     </form>
+
+    <form onsubmit="validar();">
+        <label>
+            Fecha Inicio
+        </label>
+        <input type="date" id="fechaReserva" min="2019-09-01" name="txtfechainicio"><br>
+        <hr>
+    </form>
+    <script src="js/Nuevo.js"></script>
     <script src="js/CalculoHora.js"></script>
+
     <script src="js/BuscarPersonal.js" type="text/javascript"></script>
 
     <jsp:include page="Footer.jsp"/>

@@ -31,6 +31,7 @@ public class ServletTecnico extends HttpServlet {
                 String dni = request.getParameter("idcod");
                 System.out.println("codigo: "+dni);
                 Tecnico tecnico=objTecnicoService.buscarPorDni(dni);
+                System.out.println(tecnico);
                 String json=gson.toJson(tecnico);
                 //Type listType= new TypeToken<Cliente>(){}.getType();
                 response.getWriter().println(json);
@@ -66,9 +67,9 @@ public class ServletTecnico extends HttpServlet {
                         System.out.println(espe);
                         EspecialidadTecnico obj= new EspecialidadTecnico( tecnico,objE);
                         objEspecialidadTecnico.insertar(obj);
-                        response.sendRedirect("TecnicoMsg.jsp");
-                    }
 
+                    }
+                    response.sendRedirect("TecnicoMsg.jsp");
                 }else if (strTipo.equals("actualizar_tecnico")){
                     int cod = Integer.parseInt(request.getParameter("txtId"));
                     System.out.println("codigo: "+cod);

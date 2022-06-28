@@ -15,7 +15,7 @@ import java.sql.SQLException;
  */
 public class DBConn {
     
-    private static String url = "jdbc:mysql://localhost/venta_taller?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    private static String url = "jdbc:mysql://localhost/venta_taller?useUnicode=true&characterEncoding=utf8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     private static String user = "root";
     private static String password = "123456789";
     private static Connection conn;

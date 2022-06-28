@@ -57,7 +57,7 @@
                                         <h1 class="h4 text-gray-900 mb-4">Registro de Tecnico</h1>
                                     </div>
 
-                                    <form action="tecnicoMan" method="post" id="enviar">
+                                    <form action="tecnicoMan" method="post" id="enviar" autocomplete="off" onsubmit="updateValue()">
 
                                          <div class="form-group row">
                                             <label for="inputNombre" class="col-sm-3 col-form-label col-form-label-sm">Nombre</label>
@@ -135,7 +135,7 @@
                                         
                                         <input type="hidden" id="tipo" name="tipo" value="registrar_tecnico">
                                         <div class="d-flex justify-content-center">
-                                           <input type="submit" class="btn btn-success m-3" id="myBtn" onclick="return updateValue()" value="Registrar">
+                                           <input type="submit" class="btn btn-success m-3" id="myBtn"  value="Registrar">
                                            <input type="reset" value="Regresar" name="btnRegresar"class="btn btn-secondary m-3"  onClick="history.back();">
                                         </div>  
                                     
@@ -155,7 +155,7 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="js/validarForm.js"></script>
+
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
@@ -164,6 +164,8 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+
+    <script src="js/validarForm.js"></script>
 
 </body>
 

@@ -10,7 +10,7 @@ let divBody=document.getElementById("divBody");
 let divBody2=document.getElementById("divBody2");
 myBtn.addEventListener("click",function () {
 
-        let url="electroMan?tipo=buscar_cliente&idcod="+clientDni.value;
+        let url="tecnicoMan?tipo=buscar_cliente&idcod="+clientDni.value;
         const data={
             method:'GET'
         };
