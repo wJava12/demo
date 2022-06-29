@@ -92,7 +92,7 @@ public class EspecialidadTecnicoDaoImpl implements EspecialidadTecnicoDao {
     @Override
     public List<EspecialidadTecnico> findAll() {
         List<EspecialidadTecnico> lTecnicos = new ArrayList<>();
-        EspecialidadTecnico EspecialidadTecnico = null;
+        EspecialidadTecnico especialidadTecnico = null;
         TecnicoService tecnico = new TecnicoServiceImpl();
         EspecialidadService especialidad = new EspecialidadServiceImpl();
         try {
@@ -100,13 +100,13 @@ public class EspecialidadTecnicoDaoImpl implements EspecialidadTecnicoDao {
             cst = con.prepareCall("{CALL sp_mostrar_EspecialidadTecnico()}");
             rs = cst.executeQuery();
             while (rs.next()) {
-                EspecialidadTecnico = new EspecialidadTecnico();
-                EspecialidadTecnico.setIdEspecialidadTecnico(rs.getInt(1));
-                EspecialidadTecnico.setEspecialidad(especialidad.buscar(rs.getInt(2)));
-                EspecialidadTecnico.setTecnico(tecnico.buscar(rs.getInt(3)));
+                especialidadTecnico = new EspecialidadTecnico();
+                especialidadTecnico.setIdEspecialidadTecnico(rs.getInt(1));
+                especialidadTecnico.setEspecialidad(especialidad.buscar(rs.getInt(2)));
+                especialidadTecnico.setTecnico(tecnico.buscar(rs.getInt(3)));
+                System.out.println();
 
-
-                lTecnicos.add(EspecialidadTecnico);
+                lTecnicos.add(especialidadTecnico);
             }
             rs.close();
             cst.close();

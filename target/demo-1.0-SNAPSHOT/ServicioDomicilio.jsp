@@ -19,7 +19,7 @@
     }
 %>
 
-
+<link rel="stylesheet" href="css/myStyle.css" >
 <jsp:include page="Header.jsp"/>
 <%
     int strCodigo= Integer.parseInt(request.getParameter("codigo"));
@@ -34,7 +34,7 @@
     List<Especialidad> nueva=objEspecialidades.mostrar().stream().filter(e->e.getIdEspecialidad()==strCodigo).collect(Collectors.toList());
     List<EspecialidadTecnico> listaEspecialidad= objEspecialidad.mostrar().stream().filter(r->r.getEspecialidad().getIdEspecialidad()==strCodigo).collect(Collectors.toList());
 
-
+    String hora="";
     List<HorarioTecnico> listaFiltrada=new ArrayList<>();
     for (EspecialidadTecnico obj:listaEspecialidad) {
         for (HorarioTecnico ht:listaHorariosTecnicos ) {
@@ -78,16 +78,20 @@
                 if (listaFiltrada != null) {
                     for (HorarioTecnico aux : listaFiltrada) {
             %>
-
-
+                
                 <div class="col-sm-4">
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title"><i class="fa fa-user mr-2"></i><%= aux.getTecnico().getNombre() + " " +aux.getTecnico().getApellido()%></h5>
                             <a class="card-link"><i class="fa fa-phone-square mr-2 "></i><%= aux.getTecnico().getTelefono()%></a> <br/>
                             <a class="card-link"><i class="fa fa-envelope mr-2"></i><%= aux.getTecnico().getCorreo()%></a>
+
                             <p class="card-text">Exp. <%= aux.getTecnico().getExperiencia()%> </p>
-                            <a href="#" class="btn btn-primary">Agendar Visita</a>
+                            <input type="hidden" id="tecnicoId" name="tipo" value="<%= aux.getTecnico().getIdTecnico()%>">
+                            <input type="hidden" id="horarioTecnico" name="tipo" value="<%= aux.getHorario().getHorarioEntrada()%>">
+                            <input type="hidden" id="diaInicio" name="tipo" value="<%= aux.getHorario().getDiaInicio()%>">
+                            <input type="hidden" id="diaFin" name="tipo" value="<%= aux.getHorario().getDiaFin()%>">
+                            <a href="registerElectro.jsp" class="btn btn-primary" id="idTecnico" >Agendar Visita</a>
                         </div>
                     </div>
                 </div>
@@ -97,7 +101,47 @@
 
             } %>
             </div>
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog modal-dialog-centered">
+                    <!-- Modal content-->
+                    <div class="modal-content">
 
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label  class="col-form-label">Horario:</label>
+                                <input  class="col-form-label" id="tecnico" ></input>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-sm align-middle text-xsmall" id="divTable">
+                                    <thead>
+                                    <tr>
+                                        <th>Lunes</th>
+                                        <th>Martes</th>
+                                        <th>Miercoles</th>
+                                        <th>Jueves</th>
+                                        <th>Viernes</th>
+                                        <th>Sabado</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="divHorario">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="hidden" id="tipo" name="tipo" value="registrar_personal">
+                            <div class="d-flex justify-content-center">
+                                <button type="submit" class="btn btn-success mr-2">Registrar</button>
+                                <button type="button" class="btn btn-secondary pl-4 pr-4" data-dismiss="modal" id="cerrrar">Salir</button>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
 
             <%--<hr/>
             <div class="row form-group">
@@ -193,7 +237,7 @@
 
             <hr/>--%>
 
-            <div class="d-flex justify-content-between ">
+           <%-- <div class="d-flex justify-content-between ">
                 <div class="d-inline-block mb-2">
                     <h4>Tecnicos Disponibles</h4>
                 </div>
@@ -201,9 +245,9 @@
                     <input class="form-control mr-sm-2" id="searchTerm" onkeyup="doSearch()" type="text"
                            placeholder="Buscar"/>
                 </div>
-            </div>
+            </div>--%>
 
-            <table class="table table-striped table " id="datos">
+            <%--<table class="table table-striped table " id="datos">
                 <thead class="thead-dark">
                 <tr>
                     <th>Codigo</th>
@@ -253,10 +297,9 @@
 
                 </tbody>
 
-            </table>
+            </table>--%>
 
-
-            <nav aria-label="Page navigation example">
+            <%--<nav aria-label="Page navigation example">
                 <ul class="pagination">
                     <li class="page-item"><a class="page-link" href="#">Previous</a></li>
                     <%
@@ -269,7 +312,10 @@
 
                     <li class="page-item"><a class="page-link" href="#">Next</a></li>
                 </ul>
-            </nav>
+            </nav>--%>
+
+
+
         </div>
         <!-- Modal -->
         <!-- Modal
@@ -293,6 +339,29 @@
     </form>
 </div>
 
-
-<jsp:include page="Footer.jsp"/>
+<script src="js/Nuevo.js" type="text/javascript"></script>
 <script src="js/BuscarPersonal.js" type="text/javascript"></script>
+<jsp:include page="Footer.jsp"/>
+
+<script>
+    jQuery(document).ready(function(){
+
+        jQuery('#AvanzaModal').on('hidden.bs.modal', function (e) {
+            jQuery(this).removeData('bs.modal');
+            jQuery(this).find('.modal-content').empty();
+        })
+
+    })
+</script>
+
+<script>
+    jQuery(document).ready(function(){
+
+        jQuery('#myModal').on('hidden', function (e) {
+            this.$divHorario.removeData();
+
+        })
+
+    })
+
+</script>
