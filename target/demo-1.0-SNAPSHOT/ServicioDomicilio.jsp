@@ -91,7 +91,7 @@
                             <input type="hidden" id="horarioTecnico" name="tipo" value="<%= aux.getHorario().getHorarioEntrada()%>">
                             <input type="hidden" id="diaInicio" name="tipo" value="<%= aux.getHorario().getDiaInicio()%>">
                             <input type="hidden" id="diaFin" name="tipo" value="<%= aux.getHorario().getDiaFin()%>">
-                            <a href="registerElectro.jsp" class="btn btn-primary" id="idTecnico" >Agendar Visita</a>
+                            <a href="#" class="btn btn-primary"data-toggle="modal" data-target="#myModal" id="idTecnico" >Agendar Visita</a>
                         </div>
                     </div>
                 </div>
@@ -133,7 +133,7 @@
                             <input type="hidden" id="tipo" name="tipo" value="registrar_personal">
                             <div class="d-flex justify-content-center">
                                 <button type="submit" class="btn btn-success mr-2">Registrar</button>
-                                <button type="button" class="btn btn-secondary pl-4 pr-4" data-dismiss="modal" id="cerrrar">Salir</button>
+                                <button type="reset" class="btn btn-secondary pl-4 pr-4" data-dismiss="modal" id="cancelar">Salir</button>
 
 
                             </div>
@@ -339,7 +339,7 @@
     </form>
 </div>
 
-<script src="js/Nuevo.js" type="text/javascript"></script>
+<script src="js/Horario.js" type="text/javascript"></script>
 <script src="js/BuscarPersonal.js" type="text/javascript"></script>
 <jsp:include page="Footer.jsp"/>
 
