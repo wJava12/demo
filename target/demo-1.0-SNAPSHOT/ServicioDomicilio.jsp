@@ -58,7 +58,7 @@
         <div class="table-responsive col-md-12">
             <div class="row form-group">
                 <div class="form-group col-md-12 d-flex justify-content-center">
-                    <label class="h1 text-center ">Seleccionar Tecnico de <%=nueva.get(0).getNombre()%></label>
+                    <label class="h1 text-center "> <%=nueva.get(0).getNombre().substring(0,12)+"s"+nueva.get(0).getNombre().substring(12,nueva.get(0).getNombre().length())%></label>
                 </div>
                 <%--<div class="form-group col-md-2">
                     <label for="inputFecha">Fecha</label>
@@ -73,6 +73,32 @@
                  </div>--%>
 
             </div>
+            <div class="row">
+            <%
+                if (listaFiltrada != null) {
+                    for (HorarioTecnico aux : listaFiltrada) {
+            %>
+
+
+                <div class="col-sm-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fa fa-user mr-2"></i><%= aux.getTecnico().getNombre() + " " +aux.getTecnico().getApellido()%></h5>
+                            <a class="card-link"><i class="fa fa-phone-square mr-2 "></i><%= aux.getTecnico().getTelefono()%></a> <br/>
+                            <a class="card-link"><i class="fa fa-envelope mr-2"></i><%= aux.getTecnico().getCorreo()%></a>
+                            <p class="card-text">Exp. <%= aux.getTecnico().getExperiencia()%> </p>
+                            <a href="#" class="btn btn-primary">Agendar Visita</a>
+                        </div>
+                    </div>
+                </div>
+
+
+            <% }
+
+            } %>
+            </div>
+
+
             <%--<hr/>
             <div class="row form-group">
 

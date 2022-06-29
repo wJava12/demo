@@ -1,6 +1,8 @@
 
 package com.java.Model.entidades;
 
+import java.util.List;
+
 public class Tecnico {
     
     private Integer idTecnico;
@@ -15,6 +17,8 @@ public class Tecnico {
     private int estado;
     private int estadoEliminado;
     private Cargo cargo;
+
+    private List<Especialidad> listaEspecialidades;
 
     public Tecnico(String nombre, String apellido, String dni,String telefono, String correo, String experiencia,String usuario,String clave,Cargo cargo) {
         this.nombre = nombre;
@@ -131,6 +135,13 @@ public class Tecnico {
         this.clave = clave;
     }
 
+    public List<Especialidad> getListaEspecialidades() {
+        return listaEspecialidades;
+    }
+
+    public void setListaEspecialidades(List<Especialidad> listaEspecialidades) {
+        this.listaEspecialidades = listaEspecialidades;
+    }
 
     @Override
     public String toString() {
@@ -150,4 +161,9 @@ public class Tecnico {
                 ", cargo=" + cargo +
                 '}';
     }
+
+    public void addEspecialidad(Especialidad especialidad){
+        listaEspecialidades.add(especialidad);
+    }
+
 }
