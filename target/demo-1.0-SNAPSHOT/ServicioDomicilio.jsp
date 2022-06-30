@@ -51,7 +51,22 @@
 
 
 %>
-`
+<style>
+
+    tbody{
+        height:200px;!important;
+        overflow-y:auto;!important;
+        width: 100%;!important;
+    }
+    thead,tbody,tr,td,th{
+        display:inline-block;!important;
+    }
+
+    td{
+        float:left;!important;
+    }
+
+</style>
 <div class="container">
 
     <form action="servicioMan" method="post">
