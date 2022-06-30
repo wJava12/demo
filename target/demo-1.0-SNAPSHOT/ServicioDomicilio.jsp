@@ -19,6 +19,9 @@
     }
 %>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
 <link rel="stylesheet" href="css/myStyle.css" >
 <jsp:include page="Header.jsp"/>
 <%
@@ -78,7 +81,7 @@
                 if (listaFiltrada != null) {
                     for (HorarioTecnico aux : listaFiltrada) {
             %>
-                
+
                 <div class="col-sm-4">
                     <div class="card">
                         <div class="card-body">
@@ -91,7 +94,7 @@
                             <input type="hidden" id="horarioTecnico" name="tipo" value="<%= aux.getHorario().getHorarioEntrada()%>">
                             <input type="hidden" id="diaInicio" name="tipo" value="<%= aux.getHorario().getDiaInicio()%>">
                             <input type="hidden" id="diaFin" name="tipo" value="<%= aux.getHorario().getDiaFin()%>">
-                            <a href="#" class="btn btn-primary"data-toggle="modal" data-target="#myModal" id="idTecnico" >Agendar Visita</a>
+                            <a href="#" class="btn btn-primary"data-toggle="modal" data-target="#exampleModalCenter" id="idTecnico" >Agendar Visita</a>
                         </div>
                     </div>
                 </div>
@@ -101,8 +104,8 @@
 
             } %>
             </div>
-            <div class="modal fade" id="myModal" role="dialog">
-                <div class="modal-dialog modal-dialog-centered">
+           <%-- <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
                     <!-- Modal content-->
                     <div class="modal-content">
 
@@ -142,6 +145,49 @@
 
                 </div>
             </div>
+--%>
+            <!-- Button trigger modal -->
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-smmodal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body" id="divBody">
+                            <table class="table table-responsive  table-light table-sm text-xsmall" id="datos">
+                                <thead class="thead-dark">
+                                <tr>
+                                    <th >Lunes</th>
+                                    <th >Martes</th>
+                                    <th >Miercoles</th>
+                                    <th >Jueves</th>
+                                    <th>Viernes</th>
+                                    <th >Sabado</th>
+                                </tr>
+                                </thead>
+                                <tbody id="bdy">
+
+                                </tbody>
+
+                            </table>
+
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
 
             <%--<hr/>
             <div class="row form-group">
@@ -343,25 +389,3 @@
 <script src="js/BuscarPersonal.js" type="text/javascript"></script>
 <jsp:include page="Footer.jsp"/>
 
-<script>
-    jQuery(document).ready(function(){
-
-        jQuery('#AvanzaModal').on('hidden.bs.modal', function (e) {
-            jQuery(this).removeData('bs.modal');
-            jQuery(this).find('.modal-content').empty();
-        })
-
-    })
-</script>
-
-<script>
-    jQuery(document).ready(function(){
-
-        jQuery('#myModal').on('hidden', function (e) {
-            this.$divHorario.removeData();
-
-        })
-
-    })
-
-</script>
