@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet(name = "ServletServicio", value = "/servicioMan")
@@ -17,8 +18,8 @@ public class ServletServicio extends HttpServlet {
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String strTipo = request.getParameter("tipo");
-        System.out.println("tipo" + strTipo);
-
+        System.out.println("tipo de servicio: " + strTipo);
+        HttpSession sesion = request.getSession();
         ElectrodomesticoService objEletroService= new ElectrodomesticoServiceImpl();
         TipoElectroServiceImpl objTipoElectroService = new TipoElectroServiceImpl();
         HorarioTecnicoService objHorarioTecnicoService = new HorarioTecnicoServiceImpl();
@@ -82,13 +83,30 @@ public class ServletServicio extends HttpServlet {
                             objservicio.setHorarioTecnico(objHorarioTecnico);
                             objservicio.setPersonal(objPersonal.buscar(idPersonal));
                 objServicioService.insertar(objservicio);
-
+                response.sendRedirect("ArticuloMsg.jsp");
 
                 //System.out.println(fecha + hora + nombre + apellido + telefono + direccion);
                 //System.out.println(nombreElectro + marca + modelo + serie + tipo + descripcion);
+            }else if (strTipo.equals("mostrar_tecnico_servicio")){
+                int idTecnico =Integer.parseInt(request.getParameter("enviarIdTecnico"));
+                String dia =request.getParameter("valueDia");
+                String hora =request.getParameter("valueHora");
+                String mes =request.getParameter("mesEntrada");
+
+                System.out.println(idTecnico);
+                System.out.println("mes:"+mes);
+                System.out.println("dia:"+dia);
+                System.out.println("hora:"+hora);
+                System.out.println();
+                request.setAttribute("strMes",mes);
+                request.setAttribute("strDia",dia);
+                request.setAttribute("strHora",hora);
+                request.setAttribute("strId",idTecnico);
+                request.getRequestDispatcher("registerElectro2.jsp").forward(request, response);
+
             }
 
-            response.sendRedirect("ArticuloMsg.jsp");
+
 
         } catch (Exception e) {
             response.sendRedirect("ArticuloError.jsp");

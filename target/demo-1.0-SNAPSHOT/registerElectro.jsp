@@ -70,23 +70,7 @@
                                             <a  class="btn btn-danger form-control" id="myBtn2" data-toggle="modal" data-target="#myModal">Ver Clientes</a>
                                         </div>
                                     </div>
-                                    <div class="table-responsive">
-                                        <table class="table table-sm align-middle text-xsmall" id="divTable">
-                                            <thead>
-                                            <tr>
-                                                <th>Lunes</th>
-                                                <th>Martes</th>
-                                                <th>Miercoles</th>
-                                                <th>Jueves</th>
-                                                <th>Viernes</th>
-                                                <th>Sabado</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody id="divHorario">
 
-                                            </tbody>
-                                        </table>
-                                    </div>
                                     <form action="electroMan" class="user" method="post" >
 
                                         <div class="form-group row" id="divBody">

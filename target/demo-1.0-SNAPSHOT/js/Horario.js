@@ -52,7 +52,6 @@ $('#exampleModalCenter').on('show.bs.modal', function(){
     let x=1;
     let y=x+6;
     for (let i = 0; i < 1; i++) {
-
         for (let i = 1; i <11 ; i++) {
             tr+="<tr>";
             for (let j = x; j <y; j++) {
@@ -74,7 +73,7 @@ $('#exampleModalCenter').on('show.bs.modal', function(){
 
     //console.log("tr");
     //$('#exampleModalCenter .modal-body').empty();
-    divBody.innerHTML=tr;
+    //divBody.innerHTML=tr;
     //$('#exampleModalCenter .modal-body').append(tr);
 
 });

@@ -7,6 +7,9 @@
 <%@ page import="com.java.Model.entidades.Cliente" %>
 <%@ page import="com.java.service.impl.ClienteServiceImpl" %>
 <%@ page import="java.util.stream.Collectors" %>
+<%@ page import="com.java.service.TecnicoService" %>
+<%@ page import="com.java.service.impl.TecnicoServiceImpl" %>
+<%@ page import="com.java.Model.entidades.Tecnico" %>
 <!DOCTYPE html>
 <html lang="en">
 <%
@@ -15,6 +18,9 @@
     List<TipoElectro> listElectro = tipoElectroService.mostrar();
     ClienteService ser = new ClienteServiceImpl();
     List<Cliente> list=ser.mostrar().stream().filter(e->e.getEstado()==1).collect(Collectors.toList());
+
+    TecnicoService objTecnicoService= new TecnicoServiceImpl();
+    Tecnico tecnico= objTecnicoService.buscar((Integer) request.getAttribute("strId"));
 %>
 
 
@@ -56,7 +62,41 @@
                             <div class="col-lg-12">
                                 <div class="ml-3 mr-3 p-4">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Registro de Electrodomesticos</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">Registrar servicio</h1>
+                                    </div>
+                                    <div class="form-group row">
+
+                                        <label for="inputNombre" class="col-sm-12 col-form-label">TECNICO</label>
+
+                                    </div>
+                                    <div class="form-group row">
+                                    <div class="col-sm-12">
+                                        <div class="card">
+                                            <div class="card-body flex-column">
+                                                <div class="d-flex flex-row pr-5 justify-content-between">
+                                                    <h5 class="card-title"><i class="fa fa-user mr-2"></i><%=tecnico.getNombre() + " " +tecnico.getApellido()%></h5>
+                                                    <a class="card-link"><i class="fa fa-phone-square mr-2 "></i><%= tecnico.getTelefono()%></a> <br/>
+                                                    <a class="card-link"><i class="fa fa-envelope mr-2"></i><%= tecnico.getCorreo()%></a>
+                                                </div>
+                                                <div class="d-flex flex-row">
+                                                    <div class="d-flex flex-row justify-content-end">
+                                                        <label for="inputNombre" class="col-form-label">Fecha de Visita: </label>
+                                                        <div class="col-sm-6">
+                                                            <input type="text" placeholder="Buscar Por Dni" id="idMes" class="form-control" value="<%=request.getAttribute("strDia")%><%=request.getAttribute("strMes")%>" >
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex flex-row justify-content-end">
+                                                        <label for="inputNombre" class="col-sm-4 col-form-label">Hora: </label>
+                                                        <div class="col-sm-6">
+                                                            <input type="text" placeholder="Buscar Por Dni" id="idDia" class="form-control" value="<%=request.getAttribute("strHora")%>" >
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Cliente</label>

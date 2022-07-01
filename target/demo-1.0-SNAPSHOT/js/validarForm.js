@@ -18,6 +18,7 @@ clientDni.addEventListener('input',updateValue);
 function  updateValue(){
 
         let url="tecnicoMan?tipo=buscar_tecnico&idcod="+clientDni.value;
+        alert(clientDni.value);
         const data={
             method:'GET'
         };
@@ -28,17 +29,16 @@ function  updateValue(){
 
             .then(function (client){
                 //if(confirm("Esta seguro que se desea registrar sus datos")){
+                alert(clientDni.value);
                     if(client.dni===clientDni.value ){
                         //vent.preventDefault();
                         console.log(client);
-                        alert("Dni ya existe");
-
+                        //alert("Dni ya existe");
                         document.getElementById('inputDni').style.backgroundColor = "#FFA4A4";
-                        clientDni.setCustomValidity(`Dni duplicado`);
+                        //clientDni.setCustomValidity(`Dni duplicado`);
                         //return 0;
                         //clientDni.setCustomValidity(`Dni duplicado`);
                         //window.history.back();
-
 
                     }else {
                         document.getElementById('inputDni').style.backgroundColor = "#d8ebf3";

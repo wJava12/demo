@@ -21,7 +21,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
+<link href="css/myStyle2.css">
 <link rel="stylesheet" href="css/myStyle.css" >
 <jsp:include page="Header.jsp"/>
 <%
@@ -51,22 +51,8 @@
 
 
 %>
-<style>
 
-    tbody{
-        height:200px;!important;
-        overflow-y:auto;!important;
-        width: 100%;!important;
-    }
-    thead,tbody,tr,td,th{
-        display:inline-block;!important;
-    }
 
-    td{
-        float:left;!important;
-    }
-
-</style>
 <div class="container">
 
     <form action="servicioMan" method="post">
@@ -89,10 +75,10 @@
                 </div>
                 <div class="form-group col-md-4">
                  </div>--%>
-
             </div>
             <div class="row">
             <%
+                int x=1;
                 if (listaFiltrada != null) {
                     for (HorarioTecnico aux : listaFiltrada) {
             %>
@@ -105,11 +91,11 @@
                             <a class="card-link"><i class="fa fa-envelope mr-2"></i><%= aux.getTecnico().getCorreo()%></a>
 
                             <p class="card-text">Exp. <%= aux.getTecnico().getExperiencia()%> </p>
-                            <input type="hidden" id="tecnicoId" name="tipo" value="<%= aux.getTecnico().getIdTecnico()%>">
-                            <input type="hidden" id="horarioTecnico" name="tipo" value="<%= aux.getHorario().getHorarioEntrada()%>">
-                            <input type="hidden" id="diaInicio" name="tipo" value="<%= aux.getHorario().getDiaInicio()%>">
-                            <input type="hidden" id="diaFin" name="tipo" value="<%= aux.getHorario().getDiaFin()%>">
-                            <a href="#" class="btn btn-primary"data-toggle="modal" data-target="#exampleModalCenter" id="idTecnico" >Agendar Visita</a>
+                            <input type="hidden" id="tecnicoId" name="tecnicoId" value="<%= aux.getTecnico().getIdTecnico()%>">
+                            <input type="hidden" id="horarioTecnico" name="horarioTecnico" value="<%= aux.getHorario().getHorarioEntrada()%>">
+                            <input type="hidden" id="diaInicio" name="diaInicio" value="<%= aux.getHorario().getDiaInicio()%>">
+                            <input type="hidden" id="diaFin" name="diaFin" value="<%= aux.getHorario().getDiaFin()%>">
+                            <a href="#" class="btn btn-primary"onclick="muestravalor(<%=aux.getTecnico().getIdTecnico()%>,'<%= aux.getHorario().getHorarioEntrada()%>')" id="idTecnico<%=x++%>" value="<%= aux.getIdHorarioTecnico()%>" >Agendar Visita</a>
                         </div>
                     </div>
                 </div>
@@ -162,42 +148,48 @@
             </div>
 --%>
             <!-- Button trigger modal -->
-
             <!-- Modal -->
             <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-smmodal-dialog-centered" role="document">
+                <div class="modal-dialog modal-dialog-centered" role="document" style="width: 450px">
                     <div class="modal-content">
-                        <div class="modal-header">
+                       <%-- <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                        </div>
+                        </div>--%>
                         <div class="modal-body" id="divBody">
-                            <table class="table table-responsive  table-light table-sm text-xsmall" id="datos">
-                                <thead class="thead-dark">
-                                <tr>
-                                    <th >Lunes</th>
-                                    <th >Martes</th>
-                                    <th >Miercoles</th>
-                                    <th >Jueves</th>
-                                    <th>Viernes</th>
-                                    <th >Sabado</th>
-                                </tr>
-                                </thead>
-                                <tbody id="bdy">
+                            <div class="row ">
+                                <label class="col-sm-2 col-form-label">Mes: </label>
+                                <div class="col-sm-4">
+                                    <select class="form-control" name="mesEntrada" id="mesEntrada">
+                                        <option value="enero" >Enero</option>
+                                        <option value="febrero">Febrero</option>
+                                        <option value="marzo">Marzo</option>
+                                        <option value="abril">Abril</option>
+                                        <option value="mayo">Mayo</option>
+                                        <option value="junio">Junio</option>
+                                        <option value="julio" >Julio</option>
+                                        <option value="agosto">Agosto</option>
+                                        <option value="septiembre">Setiembre</option>
+                                        <option value="octubre">octubre</option>
+                                        <option value="noviembre">noviembre</option>
+                                        <option value="diciembre">Diciembre</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <input type="hidden" id="tipo" name="tipo" value="mostrar_tecnico_servicio">
+                            <input type="hidden" id="enviarIdTecnico" name="enviarIdTecnico">
+                            <div id="calendario" class="divs">
 
-                                </tbody>
 
-                            </table>
-
-
+                            </div>
 
                         </div>
-                        <div class="modal-footer">
+                      <%--  <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             <button type="button" class="btn btn-primary">Save changes</button>
-                        </div>
+                        </div>--%>
                     </div>
                 </div>
             </div>
@@ -398,9 +390,12 @@
         </div>-->
 
     </form>
+    <div class="d-flex justify-content-center">
+        <input type="reset" value="Regresar" name="btnRegresar"class="btn btn-secondary m-3"  onClick="history.back();">
+    </div>
 </div>
 
-<script src="js/Horario.js" type="text/javascript"></script>
+<script src="js/calendario.js" type="text/javascript"></script>
 <script src="js/BuscarPersonal.js" type="text/javascript"></script>
 <jsp:include page="Footer.jsp"/>
 

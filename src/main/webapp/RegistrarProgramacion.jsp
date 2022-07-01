@@ -26,7 +26,6 @@
 <%
     TecnicoService ser = new TecnicoServiceImpl();
     HorarioService serHor = new HorarioServiceImpl();
-
     List<Horario> list2 = serHor.mostrar();
     List<Tecnico> list = ser.mostrar().stream().filter(e->e.getEstado()==1).collect(Collectors.toList());
 %>
@@ -74,7 +73,10 @@
                 </select>
               </div>
         </div>
+        <div id="calendario" class="divs">
 
+
+        </div>
 
 
 
@@ -197,6 +199,7 @@
         <input type="date" id="fechaReserva" min="2019-09-01" name="txtfechainicio"><br>
         <hr>
     </form>
+    <script src="js/calendario.js"></script>
     <script src="js/Nuevo.js"></script>
     <script src="js/CalculoHora.js"></script>
 

@@ -252,7 +252,7 @@ public class TecnicoDaoImpl implements TecnicoDao {
     public Tecnico findDni(String dni) {
         Tecnico tecnico = null;
         CargoService cargo= new CargoServiceImpl();
-
+        System.out.println(dni);
         try{
             con = DBConn.getConnection();
             cst = con.prepareCall("{CALL sp_find_dniTecnico(?)}");

@@ -73,7 +73,7 @@ $('#exampleModalCenter').on('show.bs.modal', function(){
 
     //console.log("tr");
     //$('#exampleModalCenter .modal-body').empty();
-    divBody.innerHTML=tr;
+    //divBody.innerHTML=tr;
     //$('#exampleModalCenter .modal-body').append(tr);
 
 });

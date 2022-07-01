@@ -68,7 +68,6 @@
                     <option value="Jueves">Jueves</option>
                     <option value="Viernes">Viernes</option>
                     <option value="Sabado">Sabado</option>
-
                 </select>
               </div>
         </div>

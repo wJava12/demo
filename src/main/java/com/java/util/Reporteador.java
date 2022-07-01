@@ -50,8 +50,8 @@ public class Reporteador {
              * ***Insertando imagenes al PDF *************
              */
             Image logo = Image.getInstance(ruta + "/img/logo1.jpg");
-           logo.scaleAbsolute(45, 50);
-           logo.setAbsolutePosition(540, 790);
+            logo.scaleAbsolute(45, 50);
+            logo.setAbsolutePosition(540, 790);
             document.add(logo);
 
             p = new Paragraph("                                                                       ");
