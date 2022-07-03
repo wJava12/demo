@@ -8,42 +8,63 @@ let myBtn=document.getElementById("myBtn");
 let clientDni=document.getElementById("clientDni")
 let divBody=document.getElementById("divBody");
 let divBody2=document.getElementById("divBody2");
+let btn3=document.getElementById('myBtn3');
+
+
+btn3.addEventListener("click",function(){
+    if (clientDni.value==="" || clientDni.value.length<=7){
+        alert("Ingrese Dni Correctamente");
+    }else{
+
+
+    }
+
+});
+
 myBtn.addEventListener("click",function () {
-        alert(clientDni.value)
-        let url="tecnicoMan?tipo=buscar_cliente&idcod="+clientDni.value;
-        const data={
-            method:'GET'
-        };
-        fetch(url,data)
-            .then(function (response){
-                return response.json();
-            })
+        if (clientDni.value==="" || clientDni.value.length<=7){
+            alert("Ingrese Dni Correctamente");
+        }else{
+            let url="tecnicoMan?tipo=buscar_cliente&idcod="+clientDni.value;
+            const data={
+                method:'GET'
+            };
+            fetch(url,data)
+                .then(function (response){
+                    return response.json();
+                })
 
-            .then(function (client){
-                console.log(client);
-                let row="";
+                .then(function (client){
+                    if (client===null){
+                        alert("Dni no encontrado")
+                    }else{
+                        let row="";
+                        row+="<label class='col-sm-2 col-form-label'>Nombre</label>"+
+                            "<div class='col-sm-4'>"+
+                            "<input readonly type='text' id='txtNombre' class='form-control'  value='"+client.nombre+"'>"+
+                            "</div>"+
+                            "<label class='col-sm-2 col-form-label'>Apellido</label>"+
+                            "<div class='col-sm-4'>"+
+                            "<input readonly type='text' class='form-control' value='"+client.apelldos+"'>"+
+                            "</div>";
+                        let row2="";
 
-                row+="<label class='col-sm-2 col-form-label'>Nombre</label>"+
-                    "<div class='col-sm-4'>"+
-                    "<input readonly type='text' class='form-control'  value='"+client.nombre+"'>"+
-                    "</div>"+
-                    "<label class='col-sm-2 col-form-label'>Apellido</label>"+
-                    "<div class='col-sm-4'>"+
-                    "<input readonly type='text' class='form-control' value='"+client.apelldos+"'>"+
-                    "</div>";
-                let row2="";
+                        row2+="<label class='col-sm-2 col-form-label'>Dnie</label>"+
+                            "<div class='col-sm-4'>"+
+                            "<input readonly type='text' class='form-control'name='txtDni' value='"+client.dni+"'>"+
+                            "</div>"+
+                            "<label class='col-sm-2 col-form-label'>Correo</label>"+
+                            "<div class='col-sm-4'>"+
+                            "<input readonly type='text' class='form-control'value='"+client.correo+"'>"+
+                            "</div>";
+                        divBody.innerHTML=row;
+                        divBody2.innerHTML=row2;
+                    }
 
-                row2+="<label class='col-sm-2 col-form-label'>Dnie</label>"+
-                    "<div class='col-sm-4'>"+
-                    "<input readonly type='text' class='form-control'name='txtDni' value='"+client.dni+"'>"+
-                    "</div>"+
-                    "<label class='col-sm-2 col-form-label'>Correo</label>"+
-                    "<div class='col-sm-4'>"+
-                    "<input readonly type='text' class='form-control'value='"+client.correo+"'>"+
-                    "</div>";
-                divBody.innerHTML=row;
-                divBody2.innerHTML=row2;
-            });
+                });
+
+        }
+
 
 
 

@@ -111,7 +111,7 @@
                                         </div>
 
                                     </div>
-                                    <form action="electroMan" class="user" method="post" >
+                                    <form action="electroMan" class="user" method="post">
 
                                         <div class="form-group row" id="divBody">
 
@@ -124,61 +124,77 @@
                                             <label for="inputNombre" class="col-sm-12 col-form-label text-center">ELECTRODOMESTICO</label>
                                         </div>
                                         <hr>
+
                                         <div class="form-group row">
-                                            <label for="inputNombre" class="col-sm-2 col-form-label">Nombre</label>
-                                            <div class="col-sm-10">
-                                            <input type="text" pattern="[a-zA-Z ]{3,45}" name="txtNombre" class="form-control" id="inputNombre" placeholder="Nombre">
+                                            <div class="col-sm-3">
+                                                <a class="btn btn-danger form-control" id="myBtn3" data-toggle="modal"
+                                                   data-target="#myModal2">Ver Artefactos</a>
                                             </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="inputMarca" class="col-sm-2 col-form-label">Marca</label>
-                                            <div class="col-sm-4">
-                                                <input type="text" pattern="[a-zA-Z0-9 ]{3,45}" name="txtMarca" class="form-control" id="inputMarca" placeholder="Marca">
-                                            </div>
-                                            <label for="inputMarca" class="col-sm-2 col-form-label">Modelo</label>
-                                            <div class="col-sm-4">
-                                                <input type="text" pattern="[a-zA-Z0-9 ]{3,45}" name="txtModelo" class="form-control" id="inputModelo" placeholder="Modelo">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="inputSerie" class="col-sm-2 col-form-label">Serie</label>
-                                            <div class="col-sm-4">
-                                              <input type="text" name="txtSerie" pattern="^[0-9]+" class="form-control" id="inputSerie" placeholder="Serie">
-                                            </div>
-                                            <label class="col-sm-2 col-form-label">Tipo</label>
-                                            <div class="col-sm-4">
-                                                <select class="form-control" name="tipoElectro">
-
-                                                    <%
-                                                        if (listElectro != null) {
-                                                            for (TipoElectro aux2 : listElectro) {
-                                                    %>
-                                                    <option value="<%= aux2.getIdTipoElectro()%>"><%= aux2.getNombre()%>
-                                                    </option>
-                                                    <% }
-                                                    }%>
-
-                                                </select>
-
-                                            </div>
-
                                         </div>
 
                                         <div class="form-group row">
-                                            <label for="floatingTextarea" class="col-sm-2 col-form-label">Descrip.</label>
-                                            <div class="col-sm-10">
-                                            <textarea class="form-control" placeholder="Detalle De Problema" id="floatingTextarea" name="txtDescripcion"
+                                                <label for="inputNombre" class="col-sm-2 col-form-label">Nombre</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" pattern="[a-zA-Z ]{3,45}" name="txtNombre"
+                                                           class="form-control" id="inputNombre" placeholder="Nombre">
+                                                </div>
+                                        </div>
+                                            <div class="form-group row">
+                                                <label for="inputMarca" class="col-sm-2 col-form-label">Marca</label>
+                                                <div class="col-sm-4">
+                                                    <input type="text" pattern="[a-zA-Z0-9 ]{3,45}" name="txtMarca"
+                                                           class="form-control" id="inputMarca" placeholder="Marca">
+                                                </div>
+                                                <label for="inputMarca" class="col-sm-2 col-form-label">Modelo</label>
+                                                <div class="col-sm-4">
+                                                    <input type="text" pattern="[a-zA-Z0-9 ]{3,45}" name="txtModelo"
+                                                           class="form-control" id="inputModelo" placeholder="Modelo">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="inputSerie" class="col-sm-2 col-form-label">Serie</label>
+                                                <div class="col-sm-4">
+                                                    <input type="text" name="txtSerie" pattern="^[0-9]+"
+                                                           class="form-control" id="inputSerie" placeholder="Serie">
+                                                </div>
+                                                <label class="col-sm-2 col-form-label">Tipo</label>
+                                                <div class="col-sm-4">
+                                                    <select class="form-control" name="tipoElectro">
+
+                                                        <%
+                                                            if (listElectro != null) {
+                                                                for (TipoElectro aux2 : listElectro) {
+                                                        %>
+                                                        <option value="<%= aux2.getIdTipoElectro()%>"><%= aux2.getNombre()%>
+                                                        </option>
+                                                        <% }
+                                                        }%>
+
+                                                    </select>
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="floatingTextarea"
+                                                       class="col-sm-2 col-form-label">Descrip.</label>
+                                                <div class="col-sm-10">
+                                            <textarea class="form-control" placeholder="Detalle De Problema"
+                                                      id="floatingTextarea" name="txtDescripcion"
                                                       required></textarea>
+                                                </div>
                                             </div>
+
+                                            <input type="hidden" id="tipo" name="tipo" value="registrar_electro">
+                                            <div class="d-flex justify-content-center">
+                                                <button type="submit" class="btn btn-success m-3">Registrar</button>
+                                                <input type="reset" value="Regresar" name="btnRegresar"
+                                                       class="btn btn-secondary m-3" onClick="history.back();">
+                                            </div>
+
+
                                         </div>
-
-                                        <input type="hidden" id="tipo" name="tipo" value="registrar_electro">
-                                        <div class="d-flex justify-content-center">
-                                            <button type="submit" class="btn btn-success m-3">Registrar</button>
-                                           <input type="reset" value="Regresar" name="btnRegresar"class="btn btn-secondary m-3"  onClick="history.back();">
-                                        </div>  
-
-
                                     </form>
                                     <!-- Modal Registrar Personal -->
                                     <div class="modal fade" id="myModal" role="dialog">

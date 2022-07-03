@@ -23,6 +23,7 @@ public class ServletTecnico extends HttpServlet {
 
             CargoService objCargoService=new CargoServiceImpl();
             TecnicoService objTecnicoService= new TecnicoServiceImpl();
+            ClienteService objClienteService= new ClienteServiceImpl();
         EspecialidadService objEspecialidadService= new EspecialidadServiceImpl();
         EspecialidadTecnicoService objEspecialidadTecnico= new EspecialidadTecnicoServiceImpl();
         Gson gson= new Gson();
@@ -31,9 +32,9 @@ public class ServletTecnico extends HttpServlet {
                 if(strTipo.equals("buscar_cliente")){
                 String dni = request.getParameter("idcod");
                 System.out.println("codigo: "+dni);
-                Tecnico tecnico=objCLService.buscarPorDni(dni);
-                System.out.println(tecnico);
-                String json=gson.toJson(tecnico);
+                Cliente cliente=objClienteService.mostrarClientePorDni(dni);
+                System.out.println(cliente);
+                String json=gson.toJson(cliente);
                 //Type listType= new TypeToken<Cliente>(){}.getType();
                 response.getWriter().println(json);
             }else
